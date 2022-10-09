@@ -1,38 +1,39 @@
-#include "Node.h"
 #include <iostream>
+#include <algorithm>
+#include <vector>
+#include <cmath>
 
-void makeTree(int, int[], Node *);
+#include "Node.h"
+#include "Tree.h"
 
 int main()
 {
-  // TODO: Add user input for k-th smallest, custom array?
-  int data[] = {6, 17, 20, 41, 45, 52, 57, 65, 71, 76, 79, 87, 92, 95, 99};
-  const int SIZE = sizeof(data) / sizeof(int);
-  Node root;
+  // std::string userInput;
+  std::vector<int> data;
+  int k;
 
-  makeTree(SIZE, data, &root);
+  data = {6, 17, 20, 41, 45, 52, 57, 65, 71, 76, 79, 87, 92, 95, 99};
 
-  return 0;
-}
+  std::cout << "K (max size: " << data.size() << "): ";
+  std::cin >> k;
+  std::cout << "\n";
 
-void makeTree(int SIZE, int data[], Node *root)
-{
-  if (SIZE > 3)
+  std::cout << "\n\nCurrent Dataset:\n";
+  for (int i = 0; data.size(); i++)
   {
-    int median = SIZE / 2;
-
-    // assign node with median
-    Node n(data[median]);
-
-    // split array into left and right halves
-    int left[SIZE / 2], right[SIZE / 2], i;
-    for (i = 0; i < (SIZE / 2); ++i)
-    {
-      left[i] = data[i];
-    }
-    for (; i < SIZE; ++i)
-    {
-      right[i - (SIZE / 2)] = data[i];
-    }
+    std::cout << "(" << i + 1 << ") " << data[i] << ", ";
   }
+
+  int median = floor((data.size() - 1) / 2);
+  Node *root = new Node(data[median]);
+  Tree tree(root);
+
+  tree.createTree(tree.getRoot(), data);
+  std::cout << "\n\nData in Tree (in-order traversal)\n";
+  tree.printInOrder(tree.getRoot());
+
+  int treeSize = tree.getSize();
+  int kthSmallest = tree.getSmallest(tree.getRoot(), k);
+  std::cout << "\n"
+            << k << "-th smallest value: " << kthSmallest << "\n";
 }
