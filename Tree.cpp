@@ -112,21 +112,6 @@ void Tree::createTree(Node *parent, std::vector<int> data)
 }
 
 /*
- * printInOrder prints the tree using a in-order traversal (Left->Middle->Right)
- *
- * @param node is a pointer to the starting node to print from.
- */
-void Tree::printInOrder(Node *node)
-{
-  if (node != NULL)
-  {
-    printInOrder(node->getLeft());
-    std::cout << node->getValue() << "\n";
-    printInOrder(node->getRight());
-  }
-}
-
-/*
  * deleteTree is used by the destructor to fully delete the tree from memory
  *
  * @param node is a pointer to the parent node of the subtree to delete
@@ -184,6 +169,53 @@ int Tree::getSmallest(Node *node, int k)
   {
     inOrder(node, k, &intBuffer);
     target = intBuffer[k];
-  } 
+  }
   return target;
+}
+
+/* Printers */
+
+/*
+ * printInOrder prints the tree using a in-order traversal (Left->Middle->Right)
+ *
+ * @param node is a pointer to the starting node to print from.
+ */
+void Tree::printInOrder(Node *node)
+{
+  if (node != NULL)
+  {
+    printInOrder(node->getLeft());
+    std::cout << node->getValue() << "\n";
+    printInOrder(node->getRight());
+  }
+}
+
+/*
+ * printPreOrder prints the tree using a pre-order traversal (Middle->Left->Right)
+ *
+ * @param node is a pointer to the starting node.
+ */
+void Tree::printPreOrder(Node *node)
+{
+  if (node != NULL)
+  {
+    std::cout << node->getValue() << "\n";
+    printPreOrder(node->getLeft());
+    printPreOrder(node->getRight());
+  }
+}
+
+/*
+ * printPostOrder prints the tree using a post-order traversal (Left->Right->Middle)
+ *
+ * @param node is a pointer to the starting node.
+ */
+void Tree::printPostOrder(Node *node)
+{
+  if (node != NULL)
+  {
+    printPreOrder(node->getLeft());
+    printPreOrder(node->getRight());
+    std::cout << node->getValue() << "\n";
+  }
 }

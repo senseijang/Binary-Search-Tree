@@ -9,7 +9,7 @@
 int main()
 {
   // Initialization, dataset can be changed manually
-  std::vector<int> data{ 6, 17, 20, 41, 45, 52, 57, 65, 71, 76, 79, 87, 92, 95, 99 };
+  std::vector<int> data{6, 17, 20, 41, 45, 52, 57, 65, 71, 76, 79, 87, 92, 95, 99};
   int k;
 
   // sorting data just in case its not in order
@@ -41,8 +41,16 @@ int main()
 
   // set up tree
   tree.createTree(tree.getRoot(), data);
+
+  // show traversals
   std::cout << "\n\nData in Tree (in-order traversal):\n";
   tree.printInOrder(tree.getRoot());
+
+  std::cout << "\n\nData in Tree (pre-order traversal):\n";
+  tree.printPreOrder(tree.getRoot());
+
+  std::cout << "\n\nData in Tree (post-order traversal):\n";
+  tree.printPostOrder(tree.getRoot());
 
   // find k-th smallest
   int treeSize = tree.getSize();

@@ -35,6 +35,6 @@ void Node::setParent(Node *parent) { this->parent = parent; }
 
 // Getters
 int Node::getValue() { return this->value; }
-Node* Node::getParent() { return this->parent; }
-Node* Node::getLeft() { return this->left; }
-Node* Node::getRight() { return this->right; }
+Node *Node::getParent() { return this->parent; }
+Node *Node::getLeft() { return this->left; }
+Node *Node::getRight() { return this->right; }

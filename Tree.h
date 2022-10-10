@@ -24,6 +24,8 @@ public:
   int getSize();
 
   void printInOrder(Node *);
+  void printPreOrder(Node *);
+  void printPostOrder(Node *);
   void deleteTree(Node *);
   void inOrder(Node *, int, std::vector<int> *);
 
