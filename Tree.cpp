@@ -214,8 +214,8 @@ void Tree::printPostOrder(Node *node)
 {
   if (node != NULL)
   {
-    printPreOrder(node->getLeft());
-    printPreOrder(node->getRight());
+    printPostOrder(node->getLeft());
+    printPostOrder(node->getRight());
     std::cout << node->getValue() << "\n";
   }
 }
