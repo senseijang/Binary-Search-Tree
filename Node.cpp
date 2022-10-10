@@ -30,11 +30,11 @@ Node::Node(int val, Node *left, Node *right)
 // Setters
 void Node::setValue(int val) { this->value = val; }
 void Node::setRight(Node *right) { this->right = right; }
-void Node::setLeft(Node *Left) { this->left = left; }
+void Node::setLeft(Node *left) { this->left = left; }
 void Node::setParent(Node *parent) { this->parent = parent; }
 
 // Getters
 int Node::getValue() { return this->value; }
-Node *Node::getParent() { return this->parent; }
-Node *Node::getLeft() { return this->left; }
-Node *Node::getRight() { return this->right; }
+Node* Node::getParent() { return this->parent; }
+Node* Node::getLeft() { return this->left; }
+Node* Node::getRight() { return this->right; }

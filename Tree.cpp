@@ -59,6 +59,7 @@ void Tree::createTree(Node *parent, std::vector<int> data)
 {
   int len = data.size();
 
+  // if dataset has more than 3 elements then it can be further split
   if (len > 3)
   {
     int median = floor((len - 1) / 2);
@@ -66,17 +67,20 @@ void Tree::createTree(Node *parent, std::vector<int> data)
     std::vector<int> dataLeft;
     std::vector<int> dataRight;
 
+    // split into left and right vectors
     for (int i = 0; i < median; i++)
     {
       dataLeft.push_back(data[i]);
-      dataLeft.push_back(data[median + i + 1]);
+      dataRight.push_back(data[median + i + 1]);
     }
 
+    // accounting for even datasets
     if (len % 2 == 0)
     {
       dataRight.push_back(data.back());
     }
 
+    // medianLeft and medianRight will the the children of the median
     int medianLeft = floor((dataLeft.size() - 1) / 2);
     int medianRight = floor((dataRight.size() - 1) / 2);
 
@@ -87,17 +91,20 @@ void Tree::createTree(Node *parent, std::vector<int> data)
     createTree(left, dataLeft);
     createTree(right, dataRight);
   }
+  // if dataset has exactly 3 elements, it has 1 parent, 1 left, 1 right
   else if (len == 3)
   {
     Node *left = setNode(data[0], parent, false);
     Node *right = setNode(data[2], parent, true);
     this->size += 2;
   }
+  // if dataset has 2 elements, the parent is the first element and right is the second
   else if (len == 2)
   {
     Node *right = setNode(data[1], parent, true);
     this->size += 1;
   }
+  // error catcher
   else
   {
     std::cout << "Something went wrong with setting the tree!\n";
@@ -136,6 +143,7 @@ void Tree::deleteTree(Node *node)
 
 /*
  * inOrder is used to return the k-th smallest value using in-order traversal
+ * in addition, it's used to generate a subarray with the k-th smallest value being at sentry[k]
  *
  * @param node is a pointer to a node to traverse from
  * @param k is the target k-th smallest number to find
@@ -143,7 +151,8 @@ void Tree::deleteTree(Node *node)
  */
 void Tree::inOrder(Node *node, int k, std::vector<int> *sentry)
 {
-  if (node == NULL)
+  bool eval = node == NULL;
+  if (node != NULL)
   {
     if (sentry->size() <= k)
     {
@@ -165,14 +174,16 @@ int Tree::getSmallest(Node *node, int k)
   int target = -1;
   std::vector<int> intBuffer;
 
+  // if median
   if (k == floor((this->size) / 2))
   {
-    target = (*this->root).getValue();
+    target = this->root->getValue();
   }
+  // else find it using in-order traversal
   else
   {
     inOrder(node, k, &intBuffer);
-  }
-  target = intBuffer[k];
-  return intBuffer.size();
+    target = intBuffer[k];
+  } 
+  return target;
 }
