@@ -1,3 +1,11 @@
+/****************************
+ * Filename: main.cpp
+ * Author: Andy Jang
+ * Creation Date: 10/8/22
+ * Last Modified On: 10/9/22
+ * Purpose: To find the k-th smallest element using a binary search tree.
+ ****************************/
+
 #include <iostream>
 #include <algorithm>
 #include <vector>
@@ -9,7 +17,7 @@
 int main()
 {
   // Initialization, dataset can be changed manually
-  std::vector<int> data{ 6, 17, 20, 41, 45, 52, 57, 65, 71, 76, 79, 87, 92, 95, 99 };
+  std::vector<int> data{6, 17, 20, 41, 45, 52, 57, 65, 71, 76, 79, 87, 92, 95, 99};
   int k;
 
   // sorting data just in case its not in order
